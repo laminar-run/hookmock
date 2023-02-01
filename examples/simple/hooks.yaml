@@ -1,0 +1,11 @@
+servers:
+  my-server-1:
+    name: api
+    url: http://localhost:3000
+hooks:
+  my-hook-1:
+    server: my-server-1
+    endpoint: webhooks/your-webhook-endpoint
+    payload:
+      body:
+        text: Hey from Hookmock!

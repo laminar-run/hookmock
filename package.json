@@ -1,0 +1,31 @@
+{
+  "name": "hookmock",
+  "version": "0.1.0",
+  "description": "Mock webhooks locally.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FaizChishtie/hookmock.git"
+  },
+  "bin": {
+    "hookmock": "./index.js"
+  },
+  "keywords": [
+    "webhook",
+    "mock"
+  ],
+  "author": "FaizChishtie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FaizChishtie/hookmock/issues"
+  },
+  "homepage": "https://github.com/FaizChishtie/hookmock#readme",
+  "dependencies": {
+    "axios": "^1.3.0",
+    "dotenv": "^16.0.3",
+    "js-yaml": "^4.1.0"
+  }
+}

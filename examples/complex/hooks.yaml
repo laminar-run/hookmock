@@ -1,0 +1,54 @@
+environment:
+  file: examples/hooks.env
+  variables:
+    token: BEARER_TOKEN
+    worker_token: WORKER_TOKEN
+    webhook_key: WEBHOOK_KEY
+servers:
+  api-server:
+    name: api-server
+    url: http://localhost:3000
+  worker-server:
+    name: worker-server
+    url: http://localhost:5000
+  health-server:
+    name: health-server
+    url: http://localhost:7000
+hooks:
+  api:
+    server: api-server
+    endpoint: api/start-worker
+    headers: 
+      secrets:
+        Authorization:
+          environment: token
+        worker_token:
+          environment: worker_token
+    payload:
+      file: true
+      body: mocks/api/api_webhook.json
+      secrets:
+        webhook_key:
+          environment: webhook_key
+  worker:
+    server: worker-server
+    endpoint: worker/start
+    headers: 
+      body: 
+        worker-id: worker-1
+      secrets:
+        Authorization:
+          environment: worker_token
+    payload:
+      file: true
+      body: mocks/worker/worker_webhook.json
+  health:
+    server: health-server
+    endpoint: healthcheck/
+    payload:
+      body:
+        alive: true
+groups:
+  all:
+    - api
+    - worker
