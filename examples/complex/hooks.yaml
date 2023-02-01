@@ -1,5 +1,5 @@
 environment:
-  file: examples/hooks.env
+  file: hooks.env
   variables:
     token: BEARER_TOKEN
     worker_token: WORKER_TOKEN
@@ -39,6 +39,7 @@ hooks:
       secrets:
         Authorization:
           environment: worker_token
+        PublicToken: public_token
     payload:
       file: true
       body: mocks/worker/worker_webhook.json
@@ -50,5 +51,9 @@ hooks:
         alive: true
 groups:
   all:
+    - api
+    - worker
+    - health
+  mailer:
     - api
     - worker

@@ -8,8 +8,8 @@ const yaml = require('js-yaml');
  */
 const settings = {
     quiet: false,
-    verbose: true,
-    debug: true,
+    verbose: false,
+    debug: false,
 }
 
 const error = (message) => {
@@ -23,13 +23,13 @@ const hookLog = (hookName, message) => {
 }
 
 const debug = (message) => {
-    if (settings.debug) {
+    if (settings.debug && !settings.quiet) {
         console.log('[DEBUG]:', message);
     }
 }
 
 const verbose = (message) => {
-    if (settings.verbose) {
+    if (settings.verbose && !settings.quiet) {
         console.log('[VERBOSE]:', message);
     }
 }
@@ -225,13 +225,13 @@ const fireWebhook = (config, hookName) => {
         }
     }).then((res) => {
         hookLog(hookName, `Webhook fired successfully.`);
-        verbose(res.data);
+        verbose(res?.data);
     }).catch((err) => {
         hookLog(hookName, `Ran into an error after webhook fired: ${err}`);
         verbose('Error data:');
-        verbose(err.response.data);
-        verbose(err.response.status);
-        verbose(err.response.headers);
+        verbose(err.response?.data);
+        verbose(err.response?.status);
+        verbose(err.response?.headers);
     });
 }
 
