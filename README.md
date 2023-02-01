@@ -30,8 +30,8 @@ yarn global add hookmock
 
 Take a look at some `hookmock` examples here:
 
-* [Creating a simple hookmock setup with one hook and one server]()
-* [Creating a more complex hookmock setup with multiple hooks, separate payloads, servers, groups, and environment variables]()
+* [Creating a simple hookmock setup with one hook and one server](https://github.com/FaizChishtie/hookmock/tree/master/examples/complex)
+* [Creating a more complex hookmock setup with multiple hooks, separate payloads, servers, groups, and environment variables](https://github.com/FaizChishtie/hookmock/tree/master/examples/simple)
 
 ## Usage
 
