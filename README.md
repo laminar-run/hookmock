@@ -12,6 +12,24 @@ I needed to test a webhook integration locally, but I didn't want to have to set
 
 `hookmock` is a simple CLI tool that allows you to mock a webhook request locally. You can create a set of mock payloads, send a mock webhook to a local server, and view the mock webhook payload.
 
+## Contents
+
+* [Installation](#installation)
+* [Examples](#examples)
+* [Usage](#usage)
+  * [Getting started](#getting-started)
+  * [Configuration](#configuration)
+    * [Environment `environment`](#environment-environment)
+    * [Servers `servers`](#servers-servers)
+    * [Hooks `hooks`](#hooks-hooks)
+    * [Groups `groups`](#groups-groups)
+* [Commands](#commands)
+  * [fire <hooks...>](#fire-hooks)
+  * [fire-group <groups...>](#fire-group-groups)
+  * [ls](#ls)
+* [Troubleshooting](#troubleshooting)
+  * [Logging](#logging)
+
 ## Installation
 
 You can install `hookmock` using `npm`:
@@ -278,7 +296,7 @@ In this case when you call `hookmock fire-group full-stack`, the `api`, `worker`
 
 ## Commands
 
-### `fire <hooks...>`
+### fire <hooks...>
 
 Fires webhooks from one or more hooks specified in the `hooks` argument.
 
@@ -288,7 +306,7 @@ Fires webhooks from one or more hooks specified in the `hooks` argument.
 hookmock fire-group api-hook-1 worker-hook-1
 ```
 
-### `fire-group <groups...>`
+### fire-group <groups...>
 
 Fires webhooks from one or more groups specified in the `groups` argument.
 
@@ -298,7 +316,7 @@ Fires webhooks from one or more groups specified in the `groups` argument.
 hookmock fire-group api worker
 ```
 
-### `ls`
+### ls
 
 Lists all hooks from the specified config file or `hooks.yaml` if no config file specified.
 
