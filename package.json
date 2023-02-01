@@ -1,6 +1,6 @@
 {
   "name": "hookmock",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Mock webhooks locally.",
   "main": "index.js",
   "repository": {
