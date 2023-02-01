@@ -197,7 +197,7 @@ hooks:
     queryParams: 
       # Optional -- add some non-secret params to your queryParams object
       body:
-        <header-key>: <header-value>
+        <param-key>: <param-value>
         ...
       # Optional -- add secrets to your params object from your environment or in plaintext
       secrets:
