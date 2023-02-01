@@ -209,7 +209,20 @@ const fireWebhook = (config, hookName) => {
         injectSecrets(config, headers, hook.headers.secrets)
     }
 
-    const requestUrl = `${server.url}/${hook.endpoint}`;
+    // Set 6: Get query params
+
+    const queryParamsObj = hook?.queryParams?.body || {};
+
+    if (hook.queryParams?.secrets) {
+        debug(`Adding query param secrets to query param body.`)
+        injectSecrets(config, queryParamsObj, hook.queryParams.secrets)
+    }
+
+    debug(`Query Params: ${JSON.stringify(queryParamsObj)}`);
+
+    const queryParams = Object.keys(queryParamsObj).map(key => key + '=' + queryParamsObj[key]).join('&');
+
+    const requestUrl = `${server.url}/${hook.endpoint}?${queryParams}`;
 
     hookLog(hookName, `Firing webhook to server: ${hook.server}::${server.name}::${requestUrl}`);
 

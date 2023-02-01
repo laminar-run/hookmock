@@ -44,6 +44,7 @@ Hooks:
         - The request will be sent to `http://localhost:7000/healthcheck/`
     - Payload is read from the `hooks.yaml` file since `file: true` is not set.
     - No secrets are used.
+    - Query Params: We send `worker-1` as a query param in the request.
 
 Groups:
 - all: [api, worker, health]

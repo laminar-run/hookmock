@@ -193,6 +193,21 @@ hooks:
         <some-secret-header-key>: <some-non-environment-secret>
       ...
     
+    # Optional -- add query param to your hook request, merges `body` and `secrets` to create a `headers` object
+    queryParam: 
+      # Optional -- add some non-secret params to your queryParams object
+      body:
+        <header-key>: <header-value>
+        ...
+      # Optional -- add secrets to your params object from your environment or in plaintext
+      secrets:
+        # References secrets from environment by adding `environment` key
+        <some-secret-param-key>:
+          environment: <environment-variable-declared-in-environment-referencing-the-correct-secret>
+        # If we have a secret that is not an environment secret, we can simply add it as a key, value entry to `secrets`
+        <some-secret-param-key>: <some-non-environment-secret>
+      ...
+    
     # Optional -- send a payload to with your webhook
     payload:
       # Optional, specifies if payload comes from a `.json` file or not.
@@ -240,7 +255,7 @@ Hook with Payload and Headers:
 hooks:
   worker:
     server: worker-server
-    endpoint: worker/start
+    endpoint: worker/start/
     headers: 
       body: 
         worker-id: worker-1
@@ -259,7 +274,7 @@ Hook with Payload from external file:
 hooks:
   api:
     server: api-server
-    endpoint: api/start-worker
+    endpoint: api/start-worker/
     headers: 
       secrets:
         Authorization:
@@ -270,6 +285,21 @@ hooks:
       secrets:
         webhook_key:
           environment: webhook_key
+```
+
+Hook with a secret query params:
+
+```yaml
+hooks:
+  worker:
+    server: health-server
+    endpoint: identify-worker/
+    queryParams:
+      body:
+        worker-id: worker-1
+      secrets:
+        token:
+          environment: token
 ```
 
 ### Groups `groups`

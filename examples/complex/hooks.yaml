@@ -49,6 +49,9 @@ hooks:
     payload:
       body:
         alive: true
+    queryParams:
+      body:
+        worker-id: worker-1
 groups:
   all:
     - api
