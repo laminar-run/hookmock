@@ -108,7 +108,7 @@ This section of the configuration file contains variables that `hookmock` should
 You can declare environment variables to be used with the `variables` option:
 
 ```yaml
-environment
+environment:
   variables:
     <variable-name>: <corresponding-env-variable-name>
 ```
@@ -116,7 +116,7 @@ environment
 Example:
 
 ```yaml
-environment
+environment:
   variables:
     token: TOKEN
 ```
