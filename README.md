@@ -48,8 +48,8 @@ yarn global add hookmock
 
 Take a look at some `hookmock` examples here:
 
-* [Creating a simple hookmock setup with one hook and one server](https://github.com/FaizChishtie/hookmock/tree/master/examples/complex)
-* [Creating a more complex hookmock setup with multiple hooks, separate payloads, servers, groups, and environment variables](https://github.com/FaizChishtie/hookmock/tree/master/examples/simple)
+* [Creating a simple hookmock setup with one hook and one server](https://github.com/FaizChishtie/hookmock/tree/master/examples/simple)
+* [Creating a more complex hookmock setup with multiple hooks, separate payloads, servers, groups, and environment variables](https://github.com/FaizChishtie/hookmock/tree/master/examples/complex)
 
 ## Usage
 
@@ -323,6 +323,75 @@ groups:
 ```
 
 In this case when you call `hookmock fire-group full-stack`, the `api`, `worker`, and `health` hooks will be dispatched.
+
+### Example Config File
+
+Here's an example full config file:
+
+```yaml
+environment:
+  file: hooks.env
+  variables:
+    token: BEARER_TOKEN
+    worker_token: WORKER_TOKEN
+    webhook_key: WEBHOOK_KEY
+servers:
+  api-server:
+    name: api-server
+    url: http://localhost:3000
+  worker-server:
+    name: worker-server
+    url: http://localhost:5000
+  health-server:
+    name: health-server
+    url: http://localhost:7000
+hooks:
+  api:
+    server: api-server
+    endpoint: api/start-worker
+    headers: 
+      secrets:
+        Authorization:
+          environment: token
+        worker_token:
+          environment: worker_token
+    payload:
+      file: true
+      body: mocks/api/api_webhook.json
+      secrets:
+        webhook_key:
+          environment: webhook_key
+  worker:
+    server: worker-server
+    endpoint: worker/start
+    headers: 
+      body: 
+        worker-id: worker-1
+      secrets:
+        Authorization:
+          environment: worker_token
+        PublicToken: public_token
+    payload:
+      file: true
+      body: mocks/worker/worker_webhook.json
+  health:
+    server: health-server
+    endpoint: healthcheck/
+    payload:
+      body:
+        alive: true
+    queryParams:
+      body:
+        worker-id: worker-1
+groups:
+  all:
+    - api
+    - worker
+    - health
+  mailer:
+    - api
+    - worker
+```
 
 ## Commands
 
