@@ -193,8 +193,8 @@ hooks:
         <some-secret-header-key>: <some-non-environment-secret>
       ...
     
-    # Optional -- add query param to your hook request, merges `body` and `secrets` to create a `headers` object
-    queryParam: 
+    # Optional -- add query params to your hook request, merges `body` and `secrets` to create a `headers` object
+    queryParams: 
       # Optional -- add some non-secret params to your queryParams object
       body:
         <header-key>: <header-value>
