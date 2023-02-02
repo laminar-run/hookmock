@@ -6,8 +6,6 @@ Mock webhooks locally.
 
 Testing webhooks locally can be a pain, especially if your app relies on webhooks to function (at least I found).
 
-I needed to test a webhook integration locally, but I didn't want to have to set up a server to send the webhook. The payloads I needed to test with varied in size and complexity, so I needed a way to create a set of mock payloads that I could send to my local server.
-
 ## How?
 
 `hookmock` is a simple CLI tool that allows you to mock a webhook request locally. You can create a set of mock payloads, send a mock webhook to a local server, and view the mock webhook payload.
@@ -233,7 +231,7 @@ hooks:
         <some-secret-header-key>: <some-non-environment-secret>
 ```
 
-**IMPORTANT** For hooks `header`, and `payload`, `hookmock` will combine the `body` and `secrets` into one object to pass in the request to the specified server. Try not to have any `key` overlap.
+**IMPORTANT** For hooks `header`, `queryParams`, and `payload`, `hookmock` will combine the `body` and `secrets` into one object to pass in the request to the specified server. Try not to have any `key` overlap.
 
 Here are a few examples:
 
@@ -402,7 +400,7 @@ Fires webhooks from one or more hooks specified in the `hooks` argument.
 ### Example:
 
 ```bash
-hookmock fire-group api-hook-1 worker-hook-1
+hookmock fire api-hook-1 worker-hook-1
 ```
 
 ### fire-group <groups...>
